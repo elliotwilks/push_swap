@@ -1,74 +1,111 @@
 #include"push_swap.h"
 
-/*
- * This file contains the utilitie functions for push_swap.
- *	- create_node: creates a node from the arguments.
- *	- print_stack: prints the stack given.
- *	- free_stack: frees all nodes in the stack.
- */
-
-void	create_node(node **stack_name, int value)
+void    create_node(node **stack_a, int nbr)
 {
-	node *n = malloc(sizeof(node));
-	n->value = value;
-	n->next = *stack_name;
-	*stack_name = n;
+        node *n = malloc(sizeof(node));
+        n->value = nbr;
+        n->next = *stack_a;
+        *stack_a = n;
 }
 
-void	print_stack(node **stack_name)
+int     node_count(node **stack_a)
+{
+        int     count;
+        node    *temp;
+
+        temp = *stack_a;
+        count = 0;
+        while (temp != NULL)
+        {
+                temp = temp->next;
+                count++;
+        }
+        return (count);
+}
+
+void    assign_index(node **stack_a)
+{
+        int     i;
+        int     index;
+        node    *current;
+        node    *compare;
+
+        i = 0;
+        index = 0;
+        current = *stack_a;
+        while (current != NULL)
+        {
+                compare = *stack_a;
+                index = 0;
+                i = 0;
+                while (i < node_count(stack_a))
+                {
+                        if (current->value > compare->value)
+                                index++;
+                        compare = compare->next;
+                        i++;
+                }
+                current->index = index;
+                current = current->next;
+        }
+}
+
+void    print_nodes(node **stack_a)
+{
+        node    *temp;
+
+        temp = *stack_a;
+        while (temp != NULL)
+        {
+                printf("Value: %d Index: %d\n", temp->value, temp->index);
+                temp = temp->next;
+        }
+}
+// Need to understand this better
+int	get_max_bits(node *stack)
+{
+	int	max;
+	int	bits;
+	
+	// Finds the largest index number in the stack
+	max = get_max_index(stack);
+	bits = 0;
+	while ((max >> bits) != 0)
+		bits++;
+	return (bits);
+}
+
+int	stack_size(node *stack)
 {
 	node	*temp;
+	int	size;
 
-	temp = *stack_name;
+	size = 0;
+	temp = stack;
 	while (temp != NULL)
 	{
-		printf("%d\n", temp->value);
 		temp = temp->next;
+		size++;
 	}
+	return (size);
 }
 
-void	free_stack(node **stack)
+int	get_max_index(node *stack)
 {
+	int	max;
 	node	*temp;
 
-	while(*stack)
+	if (stack == NULL)
+		return (0);
+
+	max = stack->index;
+	temp = stack->next;
+
+	while (temp != NULL)
 	{
-		temp = *stack;
-		*stack = (*stack)->next;
-		free(temp);
-	}
-}
-
-void	assign_index(node **stack_a)	
-
-	node	*temp;
-	int	index;
-
-	// temp is pointing to the first node
-	temp = *stack_a;
-	index = 0;
-/*
- * Give each node an index number based on how big the value is 
- * compared to the other nodes. 
- * for example 
- *
- * 	30   40   10  50 
- *       1   2    0   3	
- *
- * first I need to traverse through the nodes in stack a.
- *
- *
- */
-{
-	// We are comparing the two values so we need to check if both
-	// temp and temp next is not null
-	while (temp != NULL && temp->next != NULL)
-	{
-		if (temp->value < temp->next->value)
-			index++;
+		if (temp->index > max)
+			max = temp->index;
 		temp = temp->next;
 	}
-	
-	temp->index = index;
-	printf("%d\n", temp->index);
+	return (max);
 }

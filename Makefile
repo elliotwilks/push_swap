@@ -17,7 +17,7 @@ INC_DIR = include
 # Find all .c files inside src/
 SRC = $(shell find $(SRC_DIR) -name "*.c")
 
-# Convert src/file.c → build/file.o
+# Convert src/file.c to build/file.o
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
 # Include headers

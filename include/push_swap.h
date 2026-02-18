@@ -1,8 +1,18 @@
 #ifndef PUSHSWAP_H
 #define PUSHSWAP_H
 
+struct s_node
+{
+	int	value;
+	int	index;
+	struct s_node *next;
+};
+
+typedef struct s_node node;
+
 // External libraries
 #include <stdlib.h>
+#include <stdio.h>
 #include <unistd.h>
 
 // Internal libraries
@@ -28,7 +38,15 @@ void	rrr(node **stack_a, node **stack_b);
 
 // Utililities
 void	create_node(node **stack_name, int value);
-void	print_stack(node **stack_name);
+void	print_nodes(node **stack_name);
 void	free_stack(node **stack);
+int	get_max_bits(node *stack);
+int	stack_size(node *stack);
+int	get_max_index(node *stack);
+void	assign_index(node **stack_a);
+
+// Sort
+void	radix_sort(node **stack_a, node **stack_b);
+
 
 #endif
