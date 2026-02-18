@@ -1,0 +1,39 @@
+
+# Variables are an handy way to make thing more manigable 
+
+CC = cc
+FLAGS = -Wall -Wextra -Werror
+SRC = test.c main.c file.c
+OBJDIR = build
+OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
+
+# Commands
+
+# build is the name of the command we are creating 
+# main.c is a dependany 
+# Under the name of the command is the actual comand we want to run
+# -c flag is important: compile and dont link. Create the .o files
+
+other:
+	rm program_built
+
+build: $(SRC)
+	$(CC) $(FLAGS) $(SRC) -o program_built
+
+clean:
+	rm $(OBJDIR)/*.o
+
+# < means: input file
+# @ means: output file
+# $ means: variable
+
+build_o: $(OBJDIR)/$(OBJ)
+
+$(OBJDIR)/%.o: %.c
+	$(CC) $(FLAGS) -c $< -o $@
+
+# I still dont really understand make files
+# I can understand variables and creating commands but
+# it gets confusing when I need to manage multiple 
+# directories and files. Using the special synatax
+# can be confusing
