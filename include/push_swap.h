@@ -44,6 +44,7 @@ int	get_max_bits(node *stack);
 int	stack_size(node *stack);
 int	get_max_index(node *stack);
 void	assign_index(node **stack_a);
+int	node_count(node **stack_a);
 
 // Sort
 void	radix_sort(node **stack_a, node **stack_b);
