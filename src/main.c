@@ -6,7 +6,7 @@
 /*   By: elwilks <elwilks@student.42bangkok.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 01:23:40 by elwilks           #+#    #+#             */
-/*   Updated: 2026/03/06 01:29:43 by elwilks          ###   ########.fr       */
+/*   Updated: 2026/03/12 14:11:02 by elwilks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,30 @@ static int	has_duplicates(t_stack *a)
 	return (0);
 }
 
+/* Adds a node to the bottom of the stack */
+static void	append_node(t_stack *a, t_node *node)
+{
+	t_node	*tail;
+
+	if (a->top == NULL)
+	{
+		a->top = node;
+		a->size++;
+		return ;
+	}
+	tail = a->top;
+	while (tail->next)
+		tail = tail->next;
+	tail->next = node;
+	node->prev = tail;
+	a->size++;
+}
+
 /* Parse args and fill stack a */
 static void	fill_stack(t_stack *a, t_stack *b, int argc, char **argv)
 {
 	int		i;
 	t_node	*node;
-	t_node	*tail;
 
 	i = 1;
 	while (i < argc)
@@ -48,20 +66,7 @@ static void	fill_stack(t_stack *a, t_stack *b, int argc, char **argv)
 		node = node_new((int)ft_atoi(argv[i]));
 		if (node == NULL)
 			error_exit(a, b);
-		if (a->top == NULL)
-		{
-			a->top = node;
-			a->size++;
-		}
-		else
-		{
-			tail = a->top;
-			while (tail->next)
-				tail = tail->next;
-			tail->next = node;
-			node->prev = tail;
-			a->size++;
-		}
+		append_node(a, node);
 		i++;
 	}
 	if (has_duplicates(a) == 1)

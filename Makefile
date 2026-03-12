@@ -8,6 +8,7 @@ SRC		= src/main.c \
 		  src/stack_init.c \
 		  src/utils.c \
 		  src/utils_lib.c \
+		  src/error.c \
 		  src/operations/op_swap.c \
 		  src/operations/op_push.c \
 		  src/operations/op_rotate.c \

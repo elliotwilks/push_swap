@@ -6,23 +6,19 @@
 /*   By: elwilks <elwilks@student.42bangkok.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 01:26:02 by elwilks           #+#    #+#             */
-/*   Updated: 2026/03/06 01:41:40 by elwilks          ###   ########.fr       */
+/*   Updated: 2026/03/12 14:06:36 by elwilks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
-	1. Frees both stacks
-	2. Writes error to standard error
-	3. Exits program
-*/
-void	error_exit(t_stack *a, t_stack *b)
+int	check_range(long result, int sign)
 {
-	stack_free(a);
-	stack_free(b);
-	write(2, "Error\n", 6);
-	exit(1);
+	if (result * sign > 2147483647)
+		return (0);
+	if (result * sign < -2147483648)
+		return (0);
+	return (1);
 }
 
 int	is_valid_arg(const char *str)
@@ -47,9 +43,7 @@ int	is_valid_arg(const char *str)
 		if (*str < '0' || *str > '9')
 			return (0);
 		result = result * 10 + (*str - '0');
-		if (result * sign > 2147483647)
-			return (0);
-		if (result * sign < -2147483648)
+		if (check_range(result, sign) == 0)
 			return (0);
 		str++;
 	}
