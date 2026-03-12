@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 ///////////////     STRUCTURES     //////////////// 
 
@@ -67,6 +68,7 @@ void	sort_two(t_stack *a);
 void	sort_three(t_stack *a);
 void	sort_five(t_stack *a, t_stack *b);
 void	sort_radix(t_stack *a, t_stack *b);
+void	sort_turk(t_stack *a, t_stack *b);
 
 ////////////////      UTILS      /////////////////// 
 
@@ -80,5 +82,8 @@ void	error_exit(t_stack *a, t_stack *b);
 
 void	ft_putstr(char *str);
 int		ft_atoi(const char *str);
+int		get_position(t_stack *stack, t_node *node);
+t_node	*find_target(t_stack *a, t_node *b_node);
+int		get_cost(t_stack *stack, t_node *node);
 
 #endif

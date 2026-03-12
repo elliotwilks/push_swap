@@ -86,7 +86,7 @@ static void	run_sort(t_stack *a, t_stack *b)
 	else
 	{
 		assign_indexes(a);
-		sort_radix(a, b);
+		sort_turk(a, b);
 	}
 }
 
