@@ -6,7 +6,7 @@
 /*   By: elwilks <elwilks@student.42bangkok.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 01:25:55 by elwilks           #+#    #+#             */
-/*   Updated: 2026/03/06 01:25:58 by elwilks          ###   ########.fr       */
+/*   Updated: 2026/03/13 17:27:58 by elwilks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_node	*node_new(int value)
 	t_node	*node;
 
 	node = malloc(sizeof(t_node));
-	if (!node)
+	if (node == NULL)
 		return (NULL);
 	node->value = value;
 	node->index = -1;

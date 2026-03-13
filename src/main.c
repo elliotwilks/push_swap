@@ -6,7 +6,7 @@
 /*   By: elwilks <elwilks@student.42bangkok.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 01:23:40 by elwilks           #+#    #+#             */
-/*   Updated: 2026/03/12 14:11:02 by elwilks          ###   ########.fr       */
+/*   Updated: 2026/03/13 21:17:33 by elwilks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,7 @@ static void	run_sort(t_stack *a, t_stack *b)
 	else if (a->size <= 5)
 		sort_five(a, b);
 	else
-	{
-		assign_indexes(a);
 		sort_turk(a, b);
-	}
 }
 
 int	main(int argc, char **argv)
